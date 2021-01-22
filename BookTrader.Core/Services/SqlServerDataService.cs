@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using BookTrader.Core.Models;
+using Microsoft.Data.SqlClient;
 
 namespace BookTrader.Core.Services
 {
