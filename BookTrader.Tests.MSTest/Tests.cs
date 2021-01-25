@@ -6,6 +6,7 @@ using BookTrader.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Moq;
+using Prism.Windows.Navigation;
 
 namespace BookTrader.Tests.MSTest
 {
