@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookTrader.Core.Models
 {
@@ -7,6 +8,8 @@ namespace BookTrader.Core.Models
     // It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
     public class SampleOrderDetail
     {
+        [Key]
+        [Required]
         public long ProductID { get; set; }
 
         public string ProductName { get; set; }

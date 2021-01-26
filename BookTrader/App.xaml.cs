@@ -34,7 +34,8 @@ namespace BookTrader
             // register a singleton using Container.RegisterType<IInterface, Type>(new ContainerControlledLifetimeManager());
             base.ConfigureContainer();
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
-            Container.RegisterType<ISampleDataService, SampleDataService>();
+            //Container.RegisterType<ISampleDataService, SampleDataService>();
+            Container.RegisterType<ISampleDataService, XMLDataService>();
         }
 
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)

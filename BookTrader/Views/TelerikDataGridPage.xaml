@@ -13,6 +13,10 @@
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}" AutoGenerateColumns="False" >
                 <tg:RadDataGrid.Columns>
                     <!--TODO WTS:
@@ -37,6 +41,8 @@
                     </tg:DataGridTemplateColumn>
                 </tg:RadDataGrid.Columns>
             </tg:RadDataGrid>
+
+            <Button Grid.Row="1" Content="Add Records" Click="{x:Bind ViewModel.AddRecords}" HorizontalAlignment="Stretch"/>
         </Grid>
     </Grid>
 </Page>
