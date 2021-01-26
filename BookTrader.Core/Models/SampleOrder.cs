@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookTrader.Core.Models
 {
@@ -8,6 +9,8 @@ namespace BookTrader.Core.Models
     // It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
     public class SampleOrder
     {
+        [Key]
+        [Required]
         public long OrderID { get; set; }
 
         public DateTime? OrderDate { get; set; }
