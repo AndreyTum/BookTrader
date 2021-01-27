@@ -11,7 +11,7 @@ namespace BookTrader.Core.Services
     // TODO WTS: Delete this file once your app is using real data.
     public class SampleDataService : ISampleDataService
     {
-        private IEnumerable<SampleOrder> AllOrders()
+        /*private IEnumerable<SampleOrder> AllOrders()
         {
             // The following is order summary data
             var companies = AllCompanies();
@@ -479,20 +479,22 @@ namespace BookTrader.Core.Services
                     }
                 }
             };
-        }
+        }*/
 
         // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
         {
             await Task.CompletedTask;
-            return AllOrders();
+            //return AllOrders();
+            return null;
         }
 
         // TODO WTS: Remove this once your grid page is displaying real data.
         public async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
         {
             await Task.CompletedTask;
-            return AllOrders();
+            // return AllOrders();
+            return null;
         }
     }
 }
