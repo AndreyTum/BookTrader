@@ -5,6 +5,7 @@ using System.Text;
 
 namespace BookTrader.Core.Models
 {
+    // Счет
     public class Account
     {
         [Key]
@@ -18,5 +19,16 @@ namespace BookTrader.Core.Models
         public double Total { get; set; }
 
         public string AccountDescription { get; set; }
+
+        // Статистика по счету
+        public ICollection<AccountStatistic> AccountStatistics { get; set; }
+
+        // Тарифы
+        public ICollection<Tariff> Tariffs { get; set; }
+
+        public override string ToString()
+        {
+            return $"{AccountName} {Total}р.";
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace BookTrader.Core.Models
 {
+    // Биржа
     public class StockExchange
     {
         [Key]
@@ -17,5 +18,10 @@ namespace BookTrader.Core.Models
         public string StockExchangeIndex { get; set; }
 
         public string StockExchangeDescription { get; set; }
+
+        public override string ToString()
+        {
+            return $"{StockExchangeName} {StockExchangeIndex}";
+        }
     }
 }
