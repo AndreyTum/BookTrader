@@ -6,5 +6,6 @@
         public const string TelerikDataGridPage = "TelerikDataGrid";
         public const string MasterDetailPage = "MasterDetail";
         public const string SettingsPage = "Settings";
+        public const string AccountsDataGridPage = "AccountsDataGrid";
     }
 }

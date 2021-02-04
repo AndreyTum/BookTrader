@@ -30,7 +30,10 @@ namespace BookTrader.Core.Models
 
         public string TariffDescription { get; set; }
 
-        
+
+        // Сделки
+        public ICollection<Transaction> Transactions { get; set; }
+
 
         public override string ToString()
         {

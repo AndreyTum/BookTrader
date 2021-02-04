@@ -19,6 +19,9 @@ namespace BookTrader.Core.Models
 
         public string StockExchangeDescription { get; set; }
 
+        // Инструменты
+        public ICollection<TradeInstrument> TradeInstruments { get; set; }
+
         public override string ToString()
         {
             return $"{StockExchangeName} {StockExchangeIndex}";
