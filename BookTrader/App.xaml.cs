@@ -36,6 +36,7 @@ namespace BookTrader
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
             //Container.RegisterType<ISampleDataService, SampleDataService>();
             Container.RegisterType<ISampleDataService, XMLDataService>();
+            //Container.RegisterType<ISampleDataService, SampleDataService>();
         }
 
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)

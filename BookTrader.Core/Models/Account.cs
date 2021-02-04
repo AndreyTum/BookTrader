@@ -26,6 +26,9 @@ namespace BookTrader.Core.Models
         // Тарифы
         public ICollection<Tariff> Tariffs { get; set; }
 
+        // Операции по счету
+        public ICollection<Operation> Operations { get; set; }
+
         public override string ToString()
         {
             return $"{AccountName} {Total}р.";

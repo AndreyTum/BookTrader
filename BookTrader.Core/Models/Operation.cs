@@ -20,5 +20,10 @@ namespace BookTrader.Core.Models
 
         // ИД инструмента
         //public long инструментID { get; set; }
+
+        public override string ToString()
+        {
+            return $"{OperationDateTime} {Sum}р.";
+        }
     }
 }
