@@ -20,6 +20,7 @@ namespace BookTrader.Core.Models
 
         public string AccountDescription { get; set; }
 
+
         // Статистика по счету
         public ICollection<AccountStatistic> AccountStatistics { get; set; }
 

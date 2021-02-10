@@ -11,13 +11,13 @@ namespace BookTrader.ViewModels
 {
     public class AccountsDataGridViewModel : ViewModelBase
     {
-        private readonly ISampleDataService _sampleDataService;
+        private readonly IXMLDataService  xmlDataService;
 
-        public ObservableCollection<SampleOrder> Source { get; set; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<Account> Source { get; set; } = new ObservableCollection<Account>();
 
-        public AccountsDataGridViewModel(ISampleDataService sampleDataServiceInstance)
+        public AccountsDataGridViewModel(IXMLDataService xmlDataService)
         {
-            _sampleDataService = sampleDataServiceInstance;
+            this.xmlDataService = xmlDataService;
         }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
@@ -26,7 +26,7 @@ namespace BookTrader.ViewModels
             Source.Clear();
 
             // TODO WTS: Replace this with your actual data
-            var data = await _sampleDataService.GetGridDataAsync();
+            var data = await xmlDataService.GetAccountsDataAsync();
 
             foreach (var item in data)
             {

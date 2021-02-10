@@ -35,7 +35,7 @@ namespace BookTrader.ViewModels
             }
         }
 
-        public void AddRecords()
+        /*public void AddRecords()
         {
             using (Context context = new Context())
             {
@@ -500,7 +500,7 @@ namespace BookTrader.ViewModels
 
                 context.SaveChanges();
             }
-        }
+        }*/
 
 
     }

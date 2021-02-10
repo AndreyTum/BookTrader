@@ -1,4 +1,5 @@
 ﻿using BookTrader.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BookTrader.Core.Services
 {
     public class XMLDataService : IXMLDataService
     {
-        public async Task<IEnumerable<Account>> GetAccountsDataAsync()
+        /*public async Task<IEnumerable<Account>> GetAccountsDataAsync()
         {
             await Task.CompletedTask;
             return AllAccounts();
@@ -17,7 +18,20 @@ namespace BookTrader.Core.Services
 
         private IEnumerable<Account> AllAccounts()
         {
-            throw new NotImplementedException();
+            using (Context context = new Context())
+            {
+                var orders = context.Accounts.ToList();
+                return orders;
+            }
+        }*/
+
+        public async Task<IEnumerable<Account>> GetAccountsDataAsync()
+        {            
+            using (Context context = new Context())
+            {
+                var accounts = context.Accounts.ToListAsync();
+                return await accounts;
+            }
         }
 
 

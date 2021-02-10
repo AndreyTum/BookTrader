@@ -15,19 +15,18 @@
             <controls:DataGrid
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
-                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+                ItemsSource="{x:Bind ViewModel.Source, Mode=TwoWay}">
                 <controls:DataGrid.Columns>
                     <!--
                         TODO WTS:
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                    <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                    <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                    <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                    <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                    <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                    <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                    <controls:DataGridTextColumn Binding="{Binding AccountID}" Header="ИД" />
+                    <controls:DataGridTextColumn Binding="{Binding AccountName}" Header="Счет" />
+                    <controls:DataGridTextColumn Binding="{Binding CloseDate}" Header="Дата закрытия счета" />
+                    <controls:DataGridTextColumn Binding="{Binding Total}" Header="Сумма на счете" />
+                    <controls:DataGridTextColumn Binding="{Binding AccountDescription}" Header="Описание счета" />                    
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:SampleOrder">
