@@ -10,20 +10,54 @@ namespace BookTrader.Core.Services
 {
     public class XMLDataService : IXMLDataService
     {
-        /*public async Task<IEnumerable<Account>> GetAccountsDataAsync()
-        {
-            await Task.CompletedTask;
-            return AllAccounts();
-        }
+        //public async Task<IEnumerable<Account>> GetAccountsDataAsync()
+        //{
+        //    await Task.CompletedTask;
+        //    //return AllAccounts();
+        //    return AllAccounts();
+        //}
 
-        private IEnumerable<Account> AllAccounts()
-        {
-            using (Context context = new Context())
-            {
-                var orders = context.Accounts.ToList();
-                return orders;
-            }
-        }*/
+
+
+        //private IEnumerable<Account> AllAccounts()
+        //{
+
+        //    try
+        //    {
+        //        using (Context context = new Context())
+        //        {
+        //            /*context.Accounts.Add(new Account()
+        //            {
+        //                AccountID = 1,
+        //                AccountName = "TestName",
+        //                Total = 100,
+        //                AccountDescription = "Тестовый аккаунт"
+        //            });
+        //            context.SaveChanges();*/
+
+        //            var accounts = context.Accounts.ToList();
+        //            return accounts;
+        //        }
+
+        //        //return new List<Account>()
+        //        //{
+        //        //    new Account()
+        //        //    {
+        //        //        AccountID = 1,
+        //        //        AccountName = "TestName",
+        //        //        Total = 100,
+        //        //        AccountDescription = "Тестовый аккаунт"
+        //        //    }
+        //        //};
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string str = ex.Message;
+        //        return null;
+        //    }
+
+        //}
+
 
         public async Task<IEnumerable<Account>> GetAccountsDataAsync()
         {            
@@ -47,14 +81,27 @@ namespace BookTrader.Core.Services
         //    }
         //}
 
-        //private IEnumerable<SampleCompany> AllCompanies()
-        //{
-        //    using (Context context=new Context())
-        //    {
-        //        var companies = context.SampleCompanies.ToList(); ;
-        //        return companies;
-        //    }            
-        //}
+        /*private IEnumerable<SampleCompany> AllCompanies()
+        {
+            using (Context context = new Context())
+            {
+                var companies = context.SampleCompanies.ToList(); ;
+                return companies;
+            }
+        }*/
+
+        /*public async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
+        {
+            await Task.CompletedTask;
+            return AllOrders();
+        }
+
+        public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
+        {
+            await Task.CompletedTask;
+            return AllOrders();
+        }*/
+
 
         //public async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
         //{
@@ -62,10 +109,9 @@ namespace BookTrader.Core.Services
         //    return AllOrders();
         //}
 
-        //public async Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
-        //{
-        //    await Task.CompletedTask;
-        //    return AllOrders();
-        //}
+        /*public Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync()
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

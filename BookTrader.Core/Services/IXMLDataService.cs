@@ -9,5 +9,10 @@ namespace BookTrader.Core.Services
     public interface IXMLDataService
     {
         Task<IEnumerable<Account>> GetAccountsDataAsync();
+
+
+        //Task<IEnumerable<SampleOrder>> GetMasterDetailDataAsync();
+
+        //Task<IEnumerable<SampleOrder>> GetGridDataAsync();
     }
 }

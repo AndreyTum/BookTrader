@@ -12,21 +12,27 @@
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <CheckBox Content="Скрыть закрытые счета"
+                      Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                      IsChecked="{x:Bind ViewModel.IsVisibleCloseAccounts, Mode=TwoWay}"/>
+
             <controls:DataGrid
+                Grid.Row="1"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
                 ItemsSource="{x:Bind ViewModel.Source, Mode=TwoWay}">
-                <controls:DataGrid.Columns>
-                    <!--
-                        TODO WTS:
-                        Remove this column definitions and define columns for your data.
-                        Consider adding header properties to Resources.resw
-                    -->
-                    <controls:DataGridTextColumn Binding="{Binding AccountID}" Header="ИД" />
-                    <controls:DataGridTextColumn Binding="{Binding AccountName}" Header="Счет" />
-                    <controls:DataGridTextColumn Binding="{Binding CloseDate}" Header="Дата закрытия счета" />
-                    <controls:DataGridTextColumn Binding="{Binding Total}" Header="Сумма на счете" />
-                    <controls:DataGridTextColumn Binding="{Binding AccountDescription}" Header="Описание счета" />                    
+                <controls:DataGrid.Columns>                    
+                    <controls:DataGridTextColumn Binding="{Binding AccountID}" x:Uid="Page_AccoutsDataGrid_Col_AccountID" />
+                    <controls:DataGridTextColumn Binding="{Binding AccountName}" x:Uid="Page_AccoutsDataGrid_Col_AccountName" />
+                    <controls:DataGridTextColumn Binding="{Binding CloseDate}" x:Uid="Page_AccoutsDataGrid_Col_CloseDate" />
+                    <controls:DataGridTextColumn Binding="{Binding Total}" x:Uid="Page_AccoutsDataGrid_Col_Total" />
+                    <controls:DataGridTextColumn Binding="{Binding AccountDescription}" x:Uid="Page_AccoutsDataGrid_Col_AccountDescription" />
+                    <!--колонка с иконкой
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:SampleOrder">
@@ -37,7 +43,7 @@
                                     Glyph="{x:Bind Symbol}" />
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
-                    </controls:DataGridTemplateColumn>
+                    </controls:DataGridTemplateColumn>-->
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </Grid>

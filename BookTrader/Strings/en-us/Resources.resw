@@ -185,4 +185,24 @@
     <value>AccountsDataGrid</value>
     <comment>Navigation view item name for AccountsDataGrid</comment>
   </data>
+  <data name="Page_AccoutsDataGrid_Col_AccountDescription.Header" xml:space="preserve">
+    <value>Description</value>
+    <comment>AccountsDataGridPage Column Account Description</comment>
+  </data>
+  <data name="Page_AccoutsDataGrid_Col_AccountID.Header" xml:space="preserve">
+    <value>ID</value>
+    <comment>AccountsDataGridPage Column AccountID</comment>
+  </data>
+  <data name="Page_AccoutsDataGrid_Col_AccountName.Header" xml:space="preserve">
+    <value>Account</value>
+    <comment>AccountsDataGridPage Column AccountName</comment>
+  </data>
+  <data name="Page_AccoutsDataGrid_Col_CloseDate.Header" xml:space="preserve">
+    <value>Close Date</value>
+    <comment>AccountsDataGridPage Column CloseDate</comment>
+  </data>
+  <data name="Page_AccoutsDataGrid_Col_Total.Header" xml:space="preserve">
+    <value>Total</value>
+    <comment>AccountsDataGridPage Column Total</comment>
+  </data>
 </root>

@@ -15,12 +15,12 @@ namespace BookTrader.Core.Models
         //public DbSet<SampleOrderDetail> SampleOrderDetails { get; set; }
 
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<AccountStatistic> AccountStatistics { get; set; }
-        public DbSet<Operation> Operations { get; set; }
-        public DbSet<StockExchange> StockExchanges { get; set; }
-        public DbSet<Tariff> Tariffs { get; set; }
-        public DbSet<TradeInstrument> TradeInstruments { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
+        //public DbSet<AccountStatistic> AccountStatistics { get; set; }
+        //public DbSet<Operation> Operations { get; set; }
+        //public DbSet<StockExchange> StockExchanges { get; set; }
+        //public DbSet<Tariff> Tariffs { get; set; }
+        //public DbSet<TradeInstrument> TradeInstruments { get; set; }
+        //public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,12 +30,12 @@ namespace BookTrader.Core.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Account>().ToTable("Account");
-            modelBuilder.Entity<AccountStatistic>().ToTable("AccountStatistic");
-            modelBuilder.Entity<Operation>().ToTable("Operation");
-            modelBuilder.Entity<StockExchange>().ToTable("StockExchange");
-            modelBuilder.Entity<Tariff>().ToTable("Tariff");
-            modelBuilder.Entity<TradeInstrument>().ToTable("TradeInstrument");
-            modelBuilder.Entity<Transaction>().ToTable("Transaction");
+            //modelBuilder.Entity<AccountStatistic>().ToTable("AccountStatistic");
+            //modelBuilder.Entity<Operation>().ToTable("Operation");
+            //modelBuilder.Entity<StockExchange>().ToTable("StockExchange");
+            //modelBuilder.Entity<Tariff>().ToTable("Tariff");
+            //modelBuilder.Entity<TradeInstrument>().ToTable("TradeInstrument");
+            //modelBuilder.Entity<Transaction>().ToTable("Transaction");
 
 
             //modelBuilder.Entity<SampleCompany>().ToTable("SampleCompany");

@@ -21,18 +21,18 @@ namespace BookTrader.Core.Models
         public string AccountDescription { get; set; }
 
 
-        // Статистика по счету
-        public ICollection<AccountStatistic> AccountStatistics { get; set; }
+        //// Статистика по счету
+        //public ICollection<AccountStatistic> AccountStatistics { get; set; }
 
-        // Тарифы
-        public ICollection<Tariff> Tariffs { get; set; }
+        //// Тарифы
+        //public ICollection<Tariff> Tariffs { get; set; }
 
-        // Операции по счету
-        public ICollection<Operation> Operations { get; set; }
+        //// Операции по счету
+        //public ICollection<Operation> Operations { get; set; }
 
-        public override string ToString()
-        {
-            return $"{AccountName} {Total}р.";
-        }
+        //public override string ToString()
+        //{
+        //    return $"{AccountName} {Total}р.";
+        //}
     }
 }
