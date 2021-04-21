@@ -15,6 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <CheckBox Content="Скрыть закрытые счета"
@@ -46,6 +47,13 @@
                     </controls:DataGridTemplateColumn>-->
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
+
+            <StackPanel Grid.Row="2" HorizontalAlignment="Right">
+                <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                        Content="Сохранить"
+                        Command="{Binding SaveCommand}"
+                        CommandParameter="AccountID"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
