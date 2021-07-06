@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace BookTrader.Core.Models
@@ -8,17 +9,18 @@ namespace BookTrader.Core.Models
     // Счет
     public class Account
     {
-        [Key]
-        [Required]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AccountID { get; set; }
 
-        public string AccountName { get; set; }
+        [Required]
+        public string AccountName { get; set; } = "Счет";
 
-        public DateTime? CloseDate { get; set; }
+        public DateTime? CloseDate { get; set; } = DateTime.Today;
 
-        public double Total { get; set; }
+        [Required]
+        public double Total { get; set; } = 0;
 
-        public string AccountDescription { get; set; }
+        public string AccountDescription { get; set; } = "Описание счета";
 
 
         //// Статистика по счету

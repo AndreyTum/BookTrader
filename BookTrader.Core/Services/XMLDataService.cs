@@ -59,13 +59,13 @@ namespace BookTrader.Core.Services
         //}
 
 
-        public async Task<IEnumerable<Account>> GetAccountsDataAsync()
+        public async Task<IEnumerable<Account>> GetAccountsDataAsync(Context context)
         {            
-            using (Context context = new Context())
-            {
+            //using (Context context = new Context())
+            //{
                 var accounts = context.Accounts.ToListAsync();
                 return await accounts;
-            }
+            //}
         }
 
 

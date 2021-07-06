@@ -18,19 +18,31 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <CheckBox Content="Скрыть закрытые счета"
+
+            <!--<CheckBox Content="Скрыть закрытые счета"
                       Margin="{StaticResource SmallLeftTopRightBottomMargin}"
-                      IsChecked="{x:Bind ViewModel.IsVisibleCloseAccounts, Mode=TwoWay}"/>
+                      IsChecked="{x:Bind ViewModel.IsVisibleCloseAccounts, Mode=TwoWay}"/>-->
 
             <controls:DataGrid
+                x:Name="gridAccounts"
                 Grid.Row="1"
                 AutoGenerateColumns="False"
-                GridLinesVisibility="Horizontal"
+                GridLinesVisibility="Horizontal"                
                 ItemsSource="{x:Bind ViewModel.Source, Mode=TwoWay}">
-                <controls:DataGrid.Columns>                    
+                <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn Binding="{Binding AccountID}" x:Uid="Page_AccoutsDataGrid_Col_AccountID" />
                     <controls:DataGridTextColumn Binding="{Binding AccountName}" x:Uid="Page_AccoutsDataGrid_Col_AccountName" />
-                    <controls:DataGridTextColumn Binding="{Binding CloseDate}" x:Uid="Page_AccoutsDataGrid_Col_CloseDate" />
+                    <!--<controls:DataGridTextColumn Binding="{Binding CloseDate}" x:Uid="Page_AccoutsDataGrid_Col_CloseDate"/>-->
+                    <controls:DataGridTemplateColumn x:Uid="Page_AccoutsDataGrid_Col_CloseDate">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="model:Account">
+                                <CalendarDatePicker
+                                    Date="{x:Bind CloseDate}"
+                                    Language="ru-RU"
+                                    DateFormat="{}{month.integer}/{day.integer}/{year.full}"/>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
                     <controls:DataGridTextColumn Binding="{Binding Total}" x:Uid="Page_AccoutsDataGrid_Col_Total" />
                     <controls:DataGridTextColumn Binding="{Binding AccountDescription}" x:Uid="Page_AccoutsDataGrid_Col_AccountDescription" />
                     <!--колонка с иконкой
@@ -48,11 +60,18 @@
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
 
-            <StackPanel Grid.Row="2" HorizontalAlignment="Right">
+            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                        Content="Добавить счет"
+                        Command="{Binding AddCommand}"/>
+                <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                        Content="Удалить счет"
+                        Command="{Binding DeleteCommand}"
+                        CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem }"/>
                 <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
                         Content="Сохранить"
                         Command="{Binding SaveCommand}"
-                        CommandParameter="AccountID"/>
+                        CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem}"/>
             </StackPanel>
         </Grid>
     </Grid>
