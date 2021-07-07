@@ -37,6 +37,7 @@ namespace BookTrader.ViewModels
         public DelegateCommand<object> SaveCommand { get; private set; }
         public DelegateCommand<object> AddCommand { get; private set; }
         public DelegateCommand<object> DeleteCommand { get; private set; }
+        public DelegateCommand<object> ClearCloseDateCommand { get; private set; }
 
 
         public AccountsDataGridViewModel(IXMLDataService xmlDataService)
@@ -46,6 +47,7 @@ namespace BookTrader.ViewModels
             SaveCommand = new DelegateCommand<object>(Save, CanSave);
             AddCommand = new DelegateCommand<object>(Add, CanAdd);
             DeleteCommand = new DelegateCommand<object>(Delete, CanDelete);
+            ClearCloseDateCommand = new DelegateCommand<object>(ClearCloseDate, CanClearCloseDate);
         }
 
         private bool CanSave(object parameter)
@@ -78,13 +80,7 @@ namespace BookTrader.ViewModels
 
         private async void Add(object parameter)
         {
-            Account account = new Account();
-            //{
-            //    AccountID = 2,
-            //    AccountName = "Счет",
-            //    Total = 0,
-            //    AccountDescription = "Описание счета"
-            //};
+            Account account = new Account();            
 
             await context.Accounts.AddAsync(account);
             Source.Add(account);
@@ -92,14 +88,7 @@ namespace BookTrader.ViewModels
 
         private bool CanDelete(object parameter)
         {
-            if (parameter == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return parameter is null ? false : true;
         }
 
         private void Delete(object parameter)
@@ -111,6 +100,19 @@ namespace BookTrader.ViewModels
             }
         }
 
+        private bool CanClearCloseDate(object parameter)
+        {
+            return parameter is null ? false : true;
+        }
+
+        private void ClearCloseDate(object parameter)
+        {
+            if (parameter is Account)
+            {
+                Account account = (Account)parameter;
+                account.CloseDate = null;
+            }            
+        }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {

@@ -9,7 +9,14 @@
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
     xmlns:model="using:BookTrader.Core.Models"
+    xmlns:helpers="using:BookTrader.Helpers"
+    xmlns:viewModel="using:BookTrader.ViewModels"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <helpers:DateTimeOffsetToDateTimeConverter x:Key="dateTimeOffsetToDateTimeConverter"/>
+    </Page.Resources>
+
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
             <Grid.RowDefinitions>
@@ -36,10 +43,17 @@
                     <controls:DataGridTemplateColumn x:Uid="Page_AccoutsDataGrid_Col_CloseDate">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:Account">
-                                <CalendarDatePicker
-                                    Date="{x:Bind CloseDate}"
-                                    Language="ru-RU"
-                                    DateFormat="{}{month.integer}/{day.integer}/{year.full}"/>
+                                <StackPanel Orientation="Horizontal" DataContext="{Binding ElementName=ContentArea, Path=DataContext}">
+                                    <CalendarDatePicker Language="ru-RU"
+                                        Date="{x:Bind CloseDate, Mode=TwoWay, Converter={StaticResource dateTimeOffsetToDateTimeConverter}}"
+                                        DateFormat="{}{day.integer}.{month.integer}.{year.full}"/>
+                                    <StackPanel DataContext="{Binding ElementName=ContentArea, Path=DataContext}">
+                                        <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"                                        
+                                        Content="X"
+                                        Command="{Binding ClearCloseDateCommand}"
+                                        CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem}"/>
+                                    </StackPanel>
+                                </StackPanel>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
