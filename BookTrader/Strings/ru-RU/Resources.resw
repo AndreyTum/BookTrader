@@ -181,28 +181,12 @@
     <value>Персонализация</value>
     <comment>Настройки - Персонализация</comment>
   </data>
-  <data name="Page_AccoutsDataGrid_Col_AccountDescription.Header" xml:space="preserve">
-    <value>Описание счета</value>
-    <comment>AccountsDataGridPage Колонка AccountDescription</comment>
-  </data>
-  <data name="Page_AccoutsDataGrid_Col_AccountID.Header" xml:space="preserve">
-    <value>ИД</value>
-    <comment>AccountsDataGridPage Колонка AccountID</comment>
-  </data>
-  <data name="Page_AccoutsDataGrid_Col_AccountName.Header" xml:space="preserve">
-    <value>Счет</value>
-    <comment>AccountsDataGridPage Колонка AccountName</comment>
-  </data>
-  <data name="Page_AccoutsDataGrid_Col_CloseDate.Header" xml:space="preserve">
-    <value>Дата закрытия счета</value>
-    <comment>AccountsDataGridPage Колонка CloseDate</comment>
-  </data>
-  <data name="Page_AccoutsDataGrid_Col_Total.Header" xml:space="preserve">
-    <value>Сумма на счете</value>
-    <comment>AccountsDataGridPage Колонка Total</comment>
-  </data>
   <data name="Shell_AccountsDataGrid.Content" xml:space="preserve">
     <value>Управление счетами</value>
     <comment>Навигация - Управление счетами</comment>
+  </data>
+  <data name="Button_Save.Content" xml:space="preserve">
+    <value>Сохранить</value>
+    <comment>Кнопка Сохранить</comment>
   </data>
 </root>

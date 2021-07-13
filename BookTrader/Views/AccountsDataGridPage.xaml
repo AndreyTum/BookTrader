@@ -9,57 +9,54 @@
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
     xmlns:model="using:BookTrader.Core.Models"
-    xmlns:helpers="using:BookTrader.Helpers"
-    xmlns:viewModel="using:BookTrader.ViewModels"
+    xmlns:helpers="using:BookTrader.Helpers"    
     mc:Ignorable="d">
 
     <Page.Resources>
         <helpers:DateTimeOffsetToDateTimeConverter x:Key="dateTimeOffsetToDateTimeConverter"/>
+        <helpers:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
     </Page.Resources>
 
+
+
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+
+            <DataTemplate x:Key="CalendarTemplate" x:DataType="model:Account">
+                <CalendarDatePicker
+                    Language="ru-RU"
+                    Date="{x:Bind CloseDate, Mode=TwoWay, Converter={StaticResource dateTimeOffsetToDateTimeConverter}}"
+                    DateFormat="{}{day.integer}.{month.integer}.{year.full}"/>
+
+            </DataTemplate>
+        </Grid.Resources>
 
 
-            <!--<CheckBox Content="Скрыть закрытые счета"
-                      Margin="{StaticResource SmallLeftTopRightBottomMargin}"
-                      IsChecked="{x:Bind ViewModel.IsVisibleCloseAccounts, Mode=TwoWay}"/>-->
+        <CheckBox x:Uid="/AccountsDataGridPageResources/CheckBox_IsVisibleCloseAccounts"
+            Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+            IsChecked="{x:Bind ViewModel.IsVisibleCloseAccounts, Mode=TwoWay}"/>
 
-            <controls:DataGrid
+        <controls:DataGrid
                 x:Name="gridAccounts"
                 Grid.Row="1"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"                
                 ItemsSource="{x:Bind ViewModel.Source, Mode=TwoWay}">
-                <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Binding="{Binding AccountID}" x:Uid="Page_AccoutsDataGrid_Col_AccountID" />
-                    <controls:DataGridTextColumn Binding="{Binding AccountName}" x:Uid="Page_AccoutsDataGrid_Col_AccountName" />
-                    <!--<controls:DataGridTextColumn Binding="{Binding CloseDate}" x:Uid="Page_AccoutsDataGrid_Col_CloseDate"/>-->
-                    <controls:DataGridTemplateColumn x:Uid="Page_AccoutsDataGrid_Col_CloseDate">
-                        <controls:DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate x:DataType="model:Account">
-                                <StackPanel Orientation="Horizontal" DataContext="{Binding ElementName=ContentArea, Path=DataContext}">
-                                    <CalendarDatePicker Language="ru-RU"
-                                        Date="{x:Bind CloseDate, Mode=TwoWay, Converter={StaticResource dateTimeOffsetToDateTimeConverter}}"
-                                        DateFormat="{}{day.integer}.{month.integer}.{year.full}"/>
-                                    <StackPanel DataContext="{Binding ElementName=ContentArea, Path=DataContext}">
-                                        <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"                                        
-                                        Content="X"
-                                        Command="{Binding ClearCloseDateCommand}"
-                                        CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem}"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </controls:DataGridTemplateColumn.CellTemplate>
-                    </controls:DataGridTemplateColumn>
-                    <controls:DataGridTextColumn Binding="{Binding Total}" x:Uid="Page_AccoutsDataGrid_Col_Total" />
-                    <controls:DataGridTextColumn Binding="{Binding AccountDescription}" x:Uid="Page_AccoutsDataGrid_Col_AccountDescription" />
-                    <!--колонка с иконкой
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Binding="{Binding AccountID}" x:Uid="/AccountsDataGridPageResources/Col_AccountID" />
+                <controls:DataGridTextColumn Binding="{Binding AccountName}" x:Uid="/AccountsDataGridPageResources/Col_AccountName" />
+                <controls:DataGridTemplateColumn x:Uid="/AccountsDataGridPageResources/Col_CloseDate" CellTemplate="{StaticResource CalendarTemplate}"/>
+                <controls:DataGridTextColumn Binding="{Binding Total}" x:Uid="/AccountsDataGridPageResources/Col_Total" />
+                <controls:DataGridTextColumn Binding="{Binding AccountDescription}" x:Uid="/AccountsDataGridPageResources/Col_AccountDescription" />
+                <!--колонка с иконкой
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:SampleOrder">
@@ -71,22 +68,30 @@
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>-->
-                </controls:DataGrid.Columns>
-            </controls:DataGrid>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
 
-            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
-                        Content="Добавить счет"
-                        Command="{Binding AddCommand}"/>
-                <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
-                        Content="Удалить счет"
-                        Command="{Binding DeleteCommand}"
-                        CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem }"/>
-                <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
-                        Content="Сохранить"
-                        Command="{Binding SaveCommand}"
-                        CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem}"/>
-            </StackPanel>
-        </Grid>
+        <ProgressRing Grid.Row="2"
+            Width="80"
+            Height="80"
+            IsActive="{x:Bind ViewModel.IsActivProgressRing, Mode=OneWay}"
+            Visibility="{x:Bind ViewModel.IsActivProgressRing, Mode=OneWay, Converter={StaticResource booleanToVisibilityConverter}}"/>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                x:Uid="/AccountsDataGridPageResources/Button_Add"
+                Command="{Binding AddCommand}"/>
+            <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                x:Uid="/AccountsDataGridPageResources/Button_Delete"
+                Command="{Binding DeleteCommand}"
+                CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem }"/>
+            <Button Margin="{StaticResource SmallLeftTopRightBottomMargin}"
+                x:Uid="Button_Save"                
+                Command="{Binding SaveCommand}"
+                CommandParameter="{Binding ElementName=gridAccounts, Path=SelectedItem}"/>
+        </StackPanel>
+
+
+
     </Grid>
 </Page>

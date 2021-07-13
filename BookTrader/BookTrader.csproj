@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\DateTimeOffsetToDateTimeConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
@@ -248,6 +249,8 @@
     <None Include="App.config" />
     <None Include="BookTrader_TemporaryKey.pfx" />
     <None Include="Settings.XamlStyler" />
+    <PRIResource Include="Strings\ru-RU\AccountsDataGridPageResources.resw" />
+    <PRIResource Include="Strings\en-us\AccountsDataGridPageResources.resw" />
     <PRIResource Include="Strings\ru-RU\Resources.resw" />
   </ItemGroup>
   <ItemGroup>

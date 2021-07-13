@@ -15,12 +15,30 @@ namespace BookTrader.ViewModels
     public class AccountsDataGridViewModel : ViewModelBase
     {
         private readonly IXMLDataService xmlDataService;
-
-        public ObservableCollection<Account> Source { get; set; } = new ObservableCollection<Account>();
-
-        private bool isVisibleCloseAccounts;
         private Context context;
 
+        //public ObservableCollection<Account> Source { get; set; } = new ObservableCollection<Account>();
+        private ObservableCollection<Account> source = new ObservableCollection<Account>();
+        public ObservableCollection<Account> Source
+        {
+            get
+            {
+                if (isVisibleCloseAccounts)
+                {
+                    return source;
+                }
+                else
+                {
+                    return source;//.Where(w => w.CloseDate is null).ToObservableCollection();
+                }
+            }
+            set
+            {
+                source = value;
+            }
+        }
+
+        private bool isVisibleCloseAccounts;
         public bool IsVisibleCloseAccounts
         {
             get { return isVisibleCloseAccounts; }
@@ -33,12 +51,12 @@ namespace BookTrader.ViewModels
             }
         }
 
+        public bool IsActivProgressRing { get; set; } = false;
+
 
         public DelegateCommand<object> SaveCommand { get; private set; }
         public DelegateCommand<object> AddCommand { get; private set; }
         public DelegateCommand<object> DeleteCommand { get; private set; }
-        public DelegateCommand<object> ClearCloseDateCommand { get; private set; }
-
 
         public AccountsDataGridViewModel(IXMLDataService xmlDataService)
         {
@@ -47,7 +65,6 @@ namespace BookTrader.ViewModels
             SaveCommand = new DelegateCommand<object>(Save, CanSave);
             AddCommand = new DelegateCommand<object>(Add, CanAdd);
             DeleteCommand = new DelegateCommand<object>(Delete, CanDelete);
-            ClearCloseDateCommand = new DelegateCommand<object>(ClearCloseDate, CanClearCloseDate);
         }
 
         private bool CanSave(object parameter)
@@ -80,7 +97,7 @@ namespace BookTrader.ViewModels
 
         private async void Add(object parameter)
         {
-            Account account = new Account();            
+            Account account = new Account();
 
             await context.Accounts.AddAsync(account);
             Source.Add(account);
@@ -100,33 +117,27 @@ namespace BookTrader.ViewModels
             }
         }
 
-        private bool CanClearCloseDate(object parameter)
-        {
-            return parameter is null ? false : true;
-        }
-
-        private void ClearCloseDate(object parameter)
-        {
-            if (parameter is Account)
-            {
-                Account account = (Account)parameter;
-                account.CloseDate = null;
-            }            
-        }
-
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
 
-            context = new Context();
-            Source.Clear();
-
-            var data = await xmlDataService.GetAccountsDataAsync(context);
-
-
-            foreach (var item in data)
+            try
             {
-                Source.Add(item);
+                IsActivProgressRing = true;
+
+                context = new Context();
+                Source.Clear();
+
+                var data = await xmlDataService.GetAccountsDataAsync(context);
+
+                foreach (var item in data)
+                {
+                    Source.Add(item);
+                }
+            }
+            finally
+            {
+                IsActivProgressRing = false;
             }
         }
 
